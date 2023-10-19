@@ -1,31 +1,33 @@
-class ContatosModel {
-  List<ContatoModel>? contatos = [];
+import 'package:get/get.dart';
 
-  ContatosModel(this.contatos);
+class ContatosModel extends GetxController {
+  RxList<ContatoModel> _contatos = <ContatoModel>[].obs;
+
+  List<ContatoModel> get contatos => _contatos.toList();
+
+  ContatosModel(this._contatos);
 
   ContatosModel.fromJson(Map<String, dynamic> json) {
     if (json['results'] != null) {
-      contatos = <ContatoModel>[];
+      _contatos = <ContatoModel>[].obs;
       json['results'].forEach((v) {
-        contatos!.add(ContatoModel.fromJson(v));
+        _contatos.add(ContatoModel.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (contatos != null) {
-      data['results'] = contatos!.map((v) => v.toJson()).toList();
-    }
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['results'] = _contatos.map((v) => v.toJson()).toList();
     return data;
   }
 }
 
 class ContatoModel {
-  String objectId = '';
-  String nome = "";
-  int telefone = 0;
-  String urlImagem = "";
+  String? objectId;
+  String? nome;
+  int? telefone;
+  String? urlImagem;
 
   ContatoModel(this.nome, this.telefone, this.urlImagem);
   ContatoModel.vazio();
@@ -38,11 +40,11 @@ class ContatoModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['objectId'] = objectId;
-    data['Nome'] = this.nome;
-    data['Telefone'] = this.telefone;
-    data['Url_imagem'] = this.urlImagem;
+    data['Nome'] = nome;
+    data['Telefone'] = telefone;
+    data['Url_imagem'] = urlImagem;
     return data;
   }
 }

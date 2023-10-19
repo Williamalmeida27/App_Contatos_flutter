@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class CustomDio {
   var _dio = Dio();
 
-  get dio => _dio;
+  Dio get dio => _dio;
 
   CustomDio() {
     _dio.options.headers["X-Parse-Application-Id"] =

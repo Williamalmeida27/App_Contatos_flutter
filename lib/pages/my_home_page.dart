@@ -1,5 +1,4 @@
 import 'package:contatosapp/models/contatos_model.dart';
-import 'package:contatosapp/pages/lista_contatos.dart';
 import 'package:contatosapp/repositories/contatos_repository.dart';
 import 'package:contatosapp/shared/custom_drawer.dart';
 import 'package:flutter/material.dart';
@@ -180,8 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("O nome não pode ser vazio")));
                   return;
-                } else if (telefoneController.text == "" ||
-                    telefoneController == null) {
+                } else if (telefoneController.text == "") {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("O telefone não pode ser vazio")));
                   return;
